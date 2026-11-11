@@ -3,7 +3,7 @@
 The internal clock-in and project tracker for DDS Marine Energy Services. It is installable as a phone app (PWA), built with React and Supabase.
 
 - **Brief:** [`docs/BRIEF.md`](docs/BRIEF.md)
-- **Deployment:** [`docs/DEPLOY.md`](docs/DEPLOY.md)
+- **Deployment:** [`docs/DEPLOY.md`](docs/DEPLOY.md). Self-hosted Supabase plus the app, both on Dokploy (Hostinger VPS).
 - **Status:** Phase 1 built. Phase 2 (Telegram bot, pings, end-of-day report) is next.
 
 ## What's in Phase 1
@@ -37,6 +37,8 @@ scripts/
   create-super-admin.mjs Bootstrap the first super admin
   smoke-test.mjs         End-to-end check against a local stack
   make-icons.mjs         PWA icons from assets/dds-logo.png
+deploy/supabase/         Self-hosted Supabase for Dokploy: trimmed compose, migration job,
+                         secrets generator, nightly backup script
 Dockerfile, nginx.conf   Production image (static files served by nginx, SPA fallback)
 ```
 
