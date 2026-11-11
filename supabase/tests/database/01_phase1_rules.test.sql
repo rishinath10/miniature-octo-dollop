@@ -6,6 +6,10 @@ set search_path = public, extensions;
 
 select no_plan();
 
+-- Start from an empty slate (seed data removed inside this transaction only).
+delete from public.projects;
+delete from auth.users;
+
 -- ---------------------------------------------------------------------------
 -- Fixtures: four users. Role comes from app_metadata; user_metadata must be ignored.
 -- ---------------------------------------------------------------------------
@@ -240,6 +244,12 @@ select throws_ok($$ select clock_in() $$, 'P0001', 'This account is deactivated'
 
 reset role;
 select is((select late_grace_min from settings), 10, 'settings saved by super admin');
+
+-- Signed-out visitors
+set local role anon;
+select throws_ok($$ select * from people() $$, '42501', null, 'anon cannot call app functions');
+select throws_ok($$ select count(*) from tasks $$, '42501', null, 'anon cannot read tables');
+reset role;
 
 select * from finish();
 rollback;

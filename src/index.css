@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0E2240;
+  --color-navy-700: #1a3358;
+  --color-navy-50: #e8ecf2;
+  --color-gold: #C8973F;
+  --color-gold-600: #a97c2c;
+  --color-gold-50: #f8efdc;
+  --color-cream: #F7F3EA;
+  --color-cream-200: #ece5d4;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+html, body, #root { height: 100%; }
+body {
+  background: var(--color-cream);
+  color: var(--color-navy);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Keep content clear of the iPhone home indicator. */
+.pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+.pt-safe { padding-top: env(safe-area-inset-top); }
+
+@utility card { @apply rounded-xl bg-white shadow-sm ring-1 ring-black/5; }
+
+@utility input {
+    @apply w-full rounded-lg border border-cream-200 bg-white px-3 py-2 text-[15px] text-navy
+           outline-none focus:border-gold focus:ring-2 focus:ring-gold/30 disabled:bg-cream disabled:text-navy/60;
+  }
+
+@utility label { @apply mb-1 block text-xs font-semibold uppercase tracking-wide text-navy/60; }
+
+@utility btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold
+           transition disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+@utility btn-primary { @apply btn bg-navy text-cream hover:bg-navy-700; }
+
+@utility btn-gold { @apply btn bg-gold text-navy hover:bg-gold-600 hover:text-white; }
+
+@utility btn-ghost { @apply btn text-navy hover:bg-navy/5; }
+
+@utility btn-danger { @apply btn bg-red-600 text-white hover:bg-red-700; }
+
+@utility chip { @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold; }

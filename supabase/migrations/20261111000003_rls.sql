@@ -50,6 +50,9 @@ revoke insert, delete on public.profiles from authenticated;
 revoke insert, delete on public.settings from authenticated;
 revoke update, delete on public.task_activity from authenticated;
 
+-- Signed-out visitors can't call any app function.
+revoke execute on all functions in schema public from anon;
+
 -- Internal functions: not callable from the API.
 revoke execute on function public.attendance_action(uuid, text, public.activity_source, timestamptz) from public, anon, authenticated;
 revoke execute on function public.touch_activity(uuid, public.activity_source) from public, anon, authenticated;
